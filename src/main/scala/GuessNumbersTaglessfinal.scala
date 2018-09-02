@@ -1,6 +1,6 @@
 import scala.util.{Failure, Success, Try}
 
-object GuessNumbersTagfinal {
+object GuessNumbersTaglessfinal {
 
   trait Monad[F[_]] {
     def pure[A](a: A):F[A]
