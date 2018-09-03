@@ -66,8 +66,6 @@ object GuessNumbersTaglessfinal {
       _ <- game(name)
     } yield ()
 
-
-
   case class IO[A](performEff: () => A)
   object IO {
     def pure[A](a: A): IO[A] = IO(() => a)
@@ -87,5 +85,7 @@ object GuessNumbersTaglessfinal {
       override def nextInt(l: Int): IO[Int] = IO(() => scala.util.Random.nextInt(l) + 1)
     }
   }
+
   def main(args: Array[String]): Unit = Program[IO].performEff()
+
 }
