@@ -49,6 +49,11 @@ class GuessNumberSpec extends FlatSpec with Matchers with BeforeAndAfterAll {
     result._1.output should be (List("Gracias por jugar, adios", "Desea continuar: (y/n) ", "Lo siento jesus, no es correcto", "Di un numero: ", "Hola jesus, bienvenido", "Nombre: "))
   }
 
+  "The guess number game" should "inform the player if he introduce not a numberr" in {
+    val result = Program[TestIO].performEff(TestData(List("jesus", "x", "n"), List(), List(2)))
+    result._1.output should be (List("Gracias por jugar, adios", "Desea continuar: (y/n) ", "Lo siento no has introducido un número", "Di un numero: ", "Hola jesus, bienvenido", "Nombre: "))
+  }
+
   "The guess number game" should "offer to the player the option to repeat" in {
     val result = Program[TestIO].performEff(TestData(List("jesus", "3", "y", "3", "n"), List(), List(2, 3)))
     result._1.output should be (List("Gracias por jugar, adios", "Desea continuar: (y/n) ", "Felicidades jesus, el número 3 es correcto", "Di un numero: ", "Desea continuar: (y/n) ", "Lo siento jesus, no es correcto", "Di un numero: ", "Hola jesus, bienvenido", "Nombre: "))
